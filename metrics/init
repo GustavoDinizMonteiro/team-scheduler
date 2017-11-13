@@ -1,4 +1,6 @@
 #!/usr/bin/env node
 
 const requests = require('request');
+const config = require('./config');
 
+console.log(config);
