@@ -1,6 +1,24 @@
 #!/usr/bin/env node
 
-const requests = require('request');
+const requests = require('request-promise');
 const config = require('./config');
+const mock = require('./mocks/mocks')
+const util = require('./util');
 
+console.log('Start metricsd for this routs');
 console.log(config);
+
+config.routes.map(route => {
+    route.operations.map(method => {
+        console.log(config.url.concat(route.url));
+        let startMoment = Date.now();
+
+        let url = config.url.concat(route.url);
+        requests[method](util.createOptions(url, mock[route.url.concat('-', method)]))
+            .then( response => {
+                console.log(response.statusCode);
+                let endMoment = Date.now();
+                util.log(startMoment, endMoment);
+            });
+    });
+});

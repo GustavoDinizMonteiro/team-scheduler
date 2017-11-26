@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.83.0"
+    "faker": "^4.1.0",
+    "fs": "0.0.1-security",
+    "request-promise": "^4.2.2"
   }
 }
