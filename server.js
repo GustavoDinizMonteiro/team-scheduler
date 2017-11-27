@@ -72,6 +72,15 @@ app.use(function(req, res, next) {
     next();
   }
 });
+
+const usage = require('usage');
+app.use((req, res,next) => {
+  let pid = process.pid;
+  usage.lookup(pid, (err, result) => {
+    console.log(result);
+  });
+  next();
+});
 /* CUIDADO A ORDEM AQUI IMPORTA!! */
 app.post('/team', teamController.teamPost);
 app.get('/team/members', authController.ensureAuthenticated, teamController.getTeamMembers);

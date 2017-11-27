@@ -10,14 +10,6 @@ const config = {
 			operations: ['get']
 		},
 		{
-			url: '/team/pending-members',
-			operations: ['get', 'patch']
-		},
-		{
-			url: '/team/tag',
-			operations: ['post', 'get', 'patch']
-		},
-		{
 			url: '/user/hours',
 			operations: ['get', 'patch']
 		},

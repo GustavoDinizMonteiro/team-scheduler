@@ -14,7 +14,9 @@ config.routes.map(route => {
         let startMoment = Date.now();
 
         let url = config.url.concat(route.url);
-        requests[method](util.createOptions(url, mock[route.url.concat('-', method)]))
+        let body =  mock[route.url.concat('-', method)];
+        console.log(body);
+        requests[method](util.createOptions(url, body))
             .then( response => {
                 console.log(response.statusCode);
                 let endMoment = Date.now();
