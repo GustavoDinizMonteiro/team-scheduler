@@ -1,12 +1,11 @@
 const fs = require('fs');
 
 module.exports = {
-    log: (start, end) => {
+    log: (start, end, archive) => {
         let seconds = (end - start) / 1000;
-        let message = 'This operation took ' +  seconds + " .";
+        let message = seconds + " \n";
         
-        console.log(message);
-        fs.appendFileSync('./results.txt', message);
+        fs.appendFileSync('./' + archive + '.txt', message);
     },
 
     createOptions: (uri, body) => {

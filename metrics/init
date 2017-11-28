@@ -25,26 +25,39 @@ const util = require('./util');
 // let url = config.url.concat(config.routes[0].url);
 // let body =  mock['/team-post'];
 // console.log(body);
-// for(let i = 0; i < 10; i++) {
+// for(let i = 0; i < 1; i++) {
 //     let startMoment = Date.now();
 //     requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/team', body))
 //     .then(res => {
 //         let endMoment = Date.now();
-//         console.log(endMoment - startMoment);
+//         util.log(startMoment, endMoment, 'team-post');
 //     });
 // }
 
-body = mock['/team-post'];
-let bodyLogin = mock['/team-post'].admin;
-for(let i = 0; i < 10; i++) {
-    requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/team', body))
+// body = mock['/team-post'];
+// let bodyLogin = mock['/team-post'].admin;
+// for(let i = 0; i < 1000; i++) {
+//     requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/team', body))
+//     .then(res => {
+//         bodyLogin.teamId = res.team._id;
+//         let startMoment = Date.now();
+//         requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/login', bodyLogin))
+//         .then(res => {
+//             let endMoment = Date.now();
+//             util.log(startMoment, endMoment, 'login');
+//             console.log(startMoment);
+//         });
+//     });
+// }
+
+let url = config.url.concat(config.routes[1].url);
+let body =  mock['/pending-members'];
+console.log(body);
+for(let i = 0; i < 1; i++) {
+    let startMoment = Date.now();
+    requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/pending-members', body))
     .then(res => {
-        bodyLogin.teamId = res.team._id;
-        let startMoment = Date.now();
-        requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/login', bodyLogin))
-        .then(res => {
-            let endMoment = Date.now();
-            console.log(endMoment - startMoment);
-        });
+        let endMoment = Date.now();
+        util.log(startMoment, endMoment, 'pending-members');
     });
 }

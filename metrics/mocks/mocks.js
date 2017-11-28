@@ -11,6 +11,9 @@ module.exports = {
     "/login": {
         email: faker.internet.email(),
         password: faker.internet.password()
+    },
+    "/pending-members": {
+        "userId": "5a1dbead2fc49c0018f9f0b6"
     }
 }
 

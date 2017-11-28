@@ -3,11 +3,11 @@ const config = {
 	routes: [
 		{
 			url: '/team',
-			operations: ['post']
+			operations: ['post'] //OK
 		},
 		{
 			url: '/team/members',
-			operations: ['get']
+			operations: ['get', 'post']
 		},
 		{
 			url: '/user/hours',
@@ -15,7 +15,7 @@ const config = {
 		},
 		{
 			url: '/login',
-			operations: ['post']
+			operations: ['post'] //OK
 		},
 		{
 			url: '/signup',
