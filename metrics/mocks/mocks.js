@@ -7,5 +7,10 @@ module.exports = {
             email: faker.internet.email(),
             password: faker.internet.password()
         }
+    },
+    "/login": {
+        email: faker.internet.email(),
+        password: faker.internet.password()
     }
 }
+

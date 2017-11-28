@@ -9,5 +9,11 @@ module.exports = {
             email: helper(faker.internet.email()),
             password: helper(faker.internet.password())
         }
+    },
+    
+    "/login": {
+        email: helper(faker.internet.email()),
+        password: helper(faker.internet.password())
     }
 }
+
