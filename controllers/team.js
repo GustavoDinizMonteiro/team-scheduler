@@ -169,16 +169,8 @@ exports.getTeamPendingMembers = function (req, res, next) {
  * FIXME: Refatorar essa coisa horrenda.
  */
 exports.patchTeamPendingMembers = function (req, res, next) {
-    var teamId = req.user.team;
+    var teamId = req.body.team;
     var userId = req.body.userId;
-
-    if(! req.user.isAdmin) {
-        return res.status(403).send({ msg: 'You have to be the team admin to perform this action.' });
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
-        return res.status(400).send({error: "User id is not valid."});
-    }
 
     Team.findOne({_id: teamId}).exec(function (err, team) {
 

@@ -55,7 +55,7 @@ let body =  mock['/pending-members'];
 console.log(body);
 for(let i = 0; i < 1; i++) {
     let startMoment = Date.now();
-    requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/pending-members', body))
+    requests.patch(util.createOptions('https://adsd-bode.herokuapp.com/team/pending-members', body))
     .then(res => {
         let endMoment = Date.now();
         util.log(startMoment, endMoment, 'pending-members');
