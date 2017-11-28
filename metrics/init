@@ -5,22 +5,46 @@ const config = require('./config');
 const mock = require('./mocks/mocks')
 const util = require('./util');
 
-console.log('Start metricsd for this routs');
-console.log(config);
+// config.routes.map(route => {
+//     route.operations.map(method => {
+//         console.log(config.url.concat(route.url));
+//         let startMoment = Date.now();
 
-config.routes.map(route => {
-    route.operations.map(method => {
-        console.log(config.url.concat(route.url));
+//         let url = config.url.concat(route.url);
+//         let body =  mock[route.url.concat('-', method)];
+//         console.log(body);
+//         requests[method](util.createOptions(url, body))
+//             .then( response => {
+//                 console.log(response.statusCode);
+//                 let endMoment = Date.now();
+//                 util.log(startMoment, endMoment);
+//             });
+//     });
+// });
+
+// let url = config.url.concat(config.routes[0].url);
+// let body =  mock['/team-post'];
+// console.log(body);
+// for(let i = 0; i < 10; i++) {
+//     let startMoment = Date.now();
+//     requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/team', body))
+//     .then(res => {
+//         let endMoment = Date.now();
+//         console.log(endMoment - startMoment);
+//     });
+// }
+
+body = mock['/team-post'];
+let bodyLogin = mock['/team-post'].admin;
+for(let i = 0; i < 10; i++) {
+    requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/team', body))
+    .then(res => {
+        bodyLogin.teamId = res.team._id;
         let startMoment = Date.now();
-
-        let url = config.url.concat(route.url);
-        let body =  mock[route.url.concat('-', method)];
-        console.log(body);
-        requests[method](util.createOptions(url, body))
-            .then( response => {
-                console.log(response.statusCode);
-                let endMoment = Date.now();
-                util.log(startMoment, endMoment);
-            });
+        requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/login', bodyLogin))
+        .then(res => {
+            let endMoment = Date.now();
+            console.log(endMoment - startMoment);
+        });
     });
-});
+}
