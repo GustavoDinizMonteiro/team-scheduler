@@ -13,7 +13,13 @@ module.exports = {
         password: faker.internet.password()
     },
     "/pending-members": {
-        "userId": "5a1dbead2fc49c0018f9f0b6"
+        "userId": "5a1dbead2fc49c0018f9f0b6",
+        "team": "5a1dbead2fc49c0018f9f0b5"
+    },
+    "/signup": {
+        name: faker.internet.name(),
+        email: faker.internet.email(),
+        password: faker.internet.password()
     }
 }
 
