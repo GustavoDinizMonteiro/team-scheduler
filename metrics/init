@@ -23,40 +23,41 @@ const util = require('./util');
 // });
 
 // let url = config.url.concat(config.routes[0].url);
-// for(let i = 0; i < 100; i++) {
+// for(let i = 0; i < 5; i++) {
 //     let body =  mock['/team-post'];
 //     let startMoment = Date.now();
 //     requests.post(util.createOptions('http://localhost:3000/team', body))
 //     .then(res => {
 //         let endMoment = Date.now();
 //         util.log(startMoment, endMoment, 'team-post-local');
+//         console.log(res.team._id);
 //     });
 // }
 
 // for(let i = 0; i < 100; i++) {
 // let bodyLogin = mock['/team-post'].admin;
 //       body = mock['/team-post'];
-//     requests.post(util.createOptions('https://adsd-bode.herokuapp.com/team', body))
+//     requests.post(util.createOptions('http://localhost:3000/team', body))
 //     .then(res => {
 //         bodyLogin.teamId = res.team._id;
 //         let startMoment = Date.now();
-//         requests.post(util.createOptions('https://adsd-bode.herokuapp.com/login', bodyLogin))
+//         requests.post(util.createOptions('http://localhost:3000/login', bodyLogin))
 //         .then(res => {
 //             let endMoment = Date.now();
-//             util.log(startMoment, endMoment, 'login');
+//             util.log(startMoment, endMoment, 'login-local');
 //             console.log(startMoment);
 //         });
 //     });
 // }
 
-// for(let i = 0; i < 100; i++) {
+// for(let i = 0; i < 50; i++) {
 //     let url = config.url.concat(config.routes[1].url);
 //     let body =  mock['/signup'];
 //     let startMoment = Date.now();
-//     requests.post(util.createOptions('https://adsd-bode.herokuapp.com/signup', body))
+//     requests.post(util.createOptions('http://localhost:3000/signup', body))
 //     .then(res => {
 //         let endMoment = Date.now();
-//         util.log(startMoment, endMoment, 'signup');
+//         util.log(startMoment, endMoment, 'signup-local');
 //     });
 // }
 
@@ -65,24 +66,24 @@ const util = require('./util');
 //     let body = mock['/pending-members'];
 
 //     let bodySig = mock['/signup'];
-//     requests.post(util.createOptions('https://adsd-bode.herokuapp.com/signup', bodySig))
+//     requests.post(util.createOptions('http://localhost:3000/signup', bodySig))
 //         .then(res => {
 //             body.userId = res.user._id
 //             let startMoment = Date.now();
-//             requests.patch(util.createOptions('https://adsd-bode.herokuapp.com/team/pending-members', body))
+//             requests.patch(util.createOptions('http://localhost:3000/team/pending-members', body))
 //                 .then(res => {
 //                     let endMoment = Date.now();
-//                     util.log(startMoment, endMoment, 'pending-members');
+//                     util.log(startMoment, endMoment, 'pending-members-local');
 //                 });
 //         });
 // }
 
-// let startMoment = Date.now();
-// for (let i = 0; i < 300; i++) {
-//     startMoment = Date.now();
-//     requests.get(util.createOptions('https://adsd-bode.herokuapp.com/team/5a1dbead2fc49c0018f9f0b5/members'))
-//         .then(res => {
-//             let endMoment = Date.now();
-//             util.log(startMoment, endMoment, 'members');
-//         });
-// }
+let startMoment = Date.now();
+for (let i = 0; i < 100; i++) {
+    startMoment = Date.now();
+    requests.get(util.createOptions('http://localhost:3000/team/5a1eb816a62ec05a75e86fa9/members'))
+        .then(res => {
+            let endMoment = Date.now();
+            util.log(startMoment, endMoment, 'members-local');
+        });
+}
