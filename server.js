@@ -77,7 +77,7 @@ const usage = require('usage');
 app.use((req, res,next) => {
   let pid = process.pid;
   usage.lookup(pid, (err, result) => {
-    console.log('-'+(result.memoryInfo.rss/1024));
+    console.log('-'+result.cpu);
   });
   next();
 });
