@@ -73,14 +73,14 @@ app.use(function(req, res, next) {
   }
 });
 
-// const usage = require('usage');
-// app.use((req, res,next) => {
-//   let pid = process.pid;
-//   usage.lookup(pid, (err, result) => {
-//     console.log(result);
-//   });
-//   next();
-// });
+const usage = require('usage');
+app.use((req, res,next) => {
+  let pid = process.pid;
+  usage.lookup(pid, (err, result) => {
+    console.log('-'+(result.memoryInfo.rss/1024));
+  });
+  next();
+});
 /* CUIDADO A ORDEM AQUI IMPORTA!! */
 app.post('/team', teamController.teamPost);
 app.get('/team/:id/members', teamController.getTeamMembers);
