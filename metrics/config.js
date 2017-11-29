@@ -7,7 +7,11 @@ const config = {
 		},
 		{
 			url: '/team/members',
-			operations: ['get', 'post']
+			operations: ['get'] // OK
+		},
+		{
+			url: '/team/pendding-members',
+			operations: ['post'] // OK
 		},
 		{
 			url: '/user/hours',
@@ -19,7 +23,7 @@ const config = {
 		},
 		{
 			url: '/signup',
-			operations: ['post']
+			operations: ['post'] //OK
 		}
 	]
 };

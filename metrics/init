@@ -23,25 +23,24 @@ const util = require('./util');
 // });
 
 // let url = config.url.concat(config.routes[0].url);
-// let body =  mock['/team-post'];
-// console.log(body);
-// for(let i = 0; i < 1; i++) {
+// for(let i = 0; i < 100; i++) {
+//     let body =  mock['/team-post'];
 //     let startMoment = Date.now();
-//     requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/team', body))
+//     requests.post(util.createOptions('http://localhost:3000/team', body))
 //     .then(res => {
 //         let endMoment = Date.now();
-//         util.log(startMoment, endMoment, 'team-post');
+//         util.log(startMoment, endMoment, 'team-post-local');
 //     });
 // }
 
-// body = mock['/team-post'];
+// for(let i = 0; i < 100; i++) {
 // let bodyLogin = mock['/team-post'].admin;
-// for(let i = 0; i < 1000; i++) {
-//     requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/team', body))
+//       body = mock['/team-post'];
+//     requests.post(util.createOptions('https://adsd-bode.herokuapp.com/team', body))
 //     .then(res => {
 //         bodyLogin.teamId = res.team._id;
 //         let startMoment = Date.now();
-//         requests.post(util.createOptions('https://team-scheduler-app.herokuapp.com/login', bodyLogin))
+//         requests.post(util.createOptions('https://adsd-bode.herokuapp.com/login', bodyLogin))
 //         .then(res => {
 //             let endMoment = Date.now();
 //             util.log(startMoment, endMoment, 'login');
@@ -50,14 +49,40 @@ const util = require('./util');
 //     });
 // }
 
-let url = config.url.concat(config.routes[1].url);
-let body =  mock['/pending-members'];
-console.log(body);
-for(let i = 0; i < 1; i++) {
-    let startMoment = Date.now();
-    requests.patch(util.createOptions('https://adsd-bode.herokuapp.com/team/pending-members', body))
-    .then(res => {
-        let endMoment = Date.now();
-        util.log(startMoment, endMoment, 'pending-members');
-    });
-}
+// for(let i = 0; i < 100; i++) {
+//     let url = config.url.concat(config.routes[1].url);
+//     let body =  mock['/signup'];
+//     let startMoment = Date.now();
+//     requests.post(util.createOptions('https://adsd-bode.herokuapp.com/signup', body))
+//     .then(res => {
+//         let endMoment = Date.now();
+//         util.log(startMoment, endMoment, 'signup');
+//     });
+// }
+
+// for (let i = 0; i < 100; i++) {
+//     let url = config.url.concat(config.routes[1].url);
+//     let body = mock['/pending-members'];
+
+//     let bodySig = mock['/signup'];
+//     requests.post(util.createOptions('https://adsd-bode.herokuapp.com/signup', bodySig))
+//         .then(res => {
+//             body.userId = res.user._id
+//             let startMoment = Date.now();
+//             requests.patch(util.createOptions('https://adsd-bode.herokuapp.com/team/pending-members', body))
+//                 .then(res => {
+//                     let endMoment = Date.now();
+//                     util.log(startMoment, endMoment, 'pending-members');
+//                 });
+//         });
+// }
+
+// let startMoment = Date.now();
+// for (let i = 0; i < 300; i++) {
+//     startMoment = Date.now();
+//     requests.get(util.createOptions('https://adsd-bode.herokuapp.com/team/5a1dbead2fc49c0018f9f0b5/members'))
+//         .then(res => {
+//             let endMoment = Date.now();
+//             util.log(startMoment, endMoment, 'members');
+//         });
+// }

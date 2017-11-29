@@ -21,7 +21,7 @@ exports.teamPost = function (req, res, next) {
     if (errors) {
         return res.status(400).send(errors);
     }
-
+    let start = Date.now();
     Team.findOne({name: req.body.name}, function (err, team) {
         if (team) {
             return res.status(400).send({msg: 'The team name ' + req.body.name + 'is already in use, please choose another one.'});
@@ -62,7 +62,7 @@ exports.teamPost = function (req, res, next) {
                             if (err) {
                                 return res.status(400).send({error: err});
                             }
-
+                            console.log(Date.now() - start);
                             res.status(200).send({team: team});
                         });
                 });
@@ -103,11 +103,8 @@ exports.getTeamById = function (req, res, next) {
  * must be authenticated.
  */
 exports.getTeamMembers = function (req, res, next) {
-    var teamId = req.user.team;
+    var teamId = req.params.id;
 
-    if (!mongoose.Types.ObjectId.isValid(teamId)) {
-        return res.status(400).send({error: "Team id is not valid."});
-    }
     Team.findOne({_id: teamId}).populate({path: 'members', populate: {path: 'hours'}}).exec(function (err, team) {
         if (err) {
             return res.status(400).send({error: err});
@@ -115,10 +112,6 @@ exports.getTeamMembers = function (req, res, next) {
 
         if (! team) {
             return res.status(404).send({msg: "Team not found."})
-        }
-
-        if(! team.isTeamMember(req.user._id)){
-            return res.status(403).send({ msg: 'You have to be an team member to perform this action.' });
         }
 
         return res.status(200).send(team.members);
@@ -141,7 +134,7 @@ exports.getTeamPendingMembers = function (req, res, next) {
     if (!mongoose.Types.ObjectId.isValid(teamId)) {
         return res.status(400).send({error: "Team id is not valid."});
     }
-
+    let start = Date.now();
     Team.findOne({_id: teamId}).populate('pending_members').exec(function (err, team) {
 
         if (err) {
@@ -155,7 +148,7 @@ exports.getTeamPendingMembers = function (req, res, next) {
         if(! team.isTeamMember(req.user._id)){
             return res.status(403).send({ msg: 'You have to be an team member to perform this action.' });
         }
-
+        console.log(Date.now() - start);
         return res.status(200).send(team.pending_members);
 
     });
@@ -172,6 +165,7 @@ exports.patchTeamPendingMembers = function (req, res, next) {
     var teamId = req.body.team;
     var userId = req.body.userId;
 
+    let start = Date.now();
     Team.findOne({_id: teamId}).exec(function (err, team) {
 
         if (err) {
@@ -201,6 +195,7 @@ exports.patchTeamPendingMembers = function (req, res, next) {
                 if (err) {
                     return res.status(400).send({error: err});
                 }
+                console.log(Date.now() - start);
                 return res.status(200).send(team);
             });
         }else{

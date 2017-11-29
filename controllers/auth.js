@@ -60,6 +60,7 @@ exports.loginPost = function(req, res) {
       return isPendingMember;
   }
 
+  let start = Date.now();
   User.findOne(
       {
           email: req.body.email,
@@ -88,7 +89,7 @@ exports.loginPost = function(req, res) {
             if (!isMatch) {
               return res.status(401).send({ msg: "Invalid email or password" });
             }
-
+            console.log(Date.now() - start);
             res.send({ token: generateToken(user), user: user.toJSON() });
           });
     }

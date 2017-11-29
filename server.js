@@ -39,7 +39,7 @@ mongoose.connection.on('error', function() {
 });
 app.set('port', process.env.PORT || 3000);
 app.use(compression());
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator({
@@ -73,17 +73,17 @@ app.use(function(req, res, next) {
   }
 });
 
-const usage = require('usage');
-app.use((req, res,next) => {
-  let pid = process.pid;
-  usage.lookup(pid, (err, result) => {
-    console.log(result);
-  });
-  next();
-});
+// const usage = require('usage');
+// app.use((req, res,next) => {
+//   let pid = process.pid;
+//   usage.lookup(pid, (err, result) => {
+//     console.log(result);
+//   });
+//   next();
+// });
 /* CUIDADO A ORDEM AQUI IMPORTA!! */
 app.post('/team', teamController.teamPost);
-app.get('/team/members', teamController.getTeamMembers);
+app.get('/team/:id/members', teamController.getTeamMembers);
 app.get('/team/pending-members',  teamController.getTeamPendingMembers);
 app.patch('/team/pending-members', teamController.patchTeamPendingMembers);
 app.post('/team/tag',  teamController.postTeamTag);

@@ -42,6 +42,7 @@ exports.signupPost = function(req, res, next) {
     return res.status(400).send({ msg: "Team id is not valid." });
   }
 
+  let start = Date.now();
   User.findOne(
     { email: req.body.email, team: mongoose.Types.ObjectId(req.body.team) },
     function(err, user) {
@@ -72,6 +73,7 @@ exports.signupPost = function(req, res, next) {
                 res.status(400).send({ error: "Team not fount" });
               });
             } else {
+              console.log(Date.now() - start);
               res.send({
                 token: authController.generateToken(user),
                 user: user
